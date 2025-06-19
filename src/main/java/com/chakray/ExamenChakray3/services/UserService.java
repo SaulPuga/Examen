@@ -40,6 +40,7 @@ public class UserService {
     public UserModel UpdateAddress(UserModel request, Long id){
         UserModel address = userRepository.findById(id).get();
         address.setAddress(request.getAddress());
+        userRepository.save(address);
         return address;
     }
 
@@ -61,7 +62,7 @@ public class UserService {
 
     public AddressModel updateAddresbyid(Long userId, Long addressId, AddressModel addresDetails ) {
 
-        ArrayList<AddressModel> listaDirecciones = addressById(userId);
+        UserModel address = userRepository.findById(userId).get();
         /*UserModel user = userRepository.findById(userId).get();
         if(user.getId() == userId){
             System.out.println("usuario encontrado");

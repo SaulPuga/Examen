@@ -69,12 +69,18 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
     @PutMapping("/users/{userId}/addresses/{addressId}")
-    public ResponseEntity<AddressModel> updateAddress(@PathVariable Long userId,
+    public ResponseEntity<AddressModel> updateAddressById(@PathVariable Long userId,
                                                       @PathVariable Long addressId,
                                                       @RequestBody  AddressModel addressDetails){
 
         AddressModel updatedAddress = userService.updateAddresbyid(userId, addressId, addressDetails);
         return ResponseEntity.ok(updatedAddress);
+    }
+
+    @PutMapping("/users/{userId}/addresses")
+    public UserModel updateAddress (@PathVariable("userId") Long userId,
+                                    @RequestBody UserModel userModel){
+       return userService.UpdateAddress(userModel, userId);
     }
 
 
